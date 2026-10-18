@@ -53,7 +53,7 @@
             background-position: center;
         }
 
-        /* Стили для картинок-аватарок (обезьянки) */
+        /* Стили для статичной картинки (3-й экран) */
         .avatar-img {
             width: 120px;
             height: 120px;
@@ -62,7 +62,7 @@
             object-fit: contain;
         }
 
-        /* Стили для анимированного плеера */
+        /* Стили для анимированного плеера (2-й экран) */
         #avatar-monkey-animated {
             width: 120px;
             height: 120px;
@@ -315,7 +315,7 @@
 
 <!-- ЭКРАН 2: Ввод кода -->
 <div class="auth-form" id="screen-code">
-    <!-- Анимированная обезьянка через tgs-player -->
+    <!-- ТУТ ИСПОЛЬЗУЕТСЯ ТВОЙ ФАЙЛ monkey.tgs -->
     <div id="avatar-monkey-animated">
         <tgs-player autoplay loop mode="normal" src="monkey.tgs" style="width: 120px; height: 120px;"></tgs-player>
     </div>
@@ -334,7 +334,7 @@
 
 <!-- ЭКРАН 3: Ввод пароля -->
 <div class="auth-form" id="screen-password">
-    <!-- Статичная картинка обезьянки с закрытым лицом -->
+    <!-- ТУТ ИСПОЛЬЗУЕТСЯ СТАТИЧНАЯ КАРТИНКА С САЙТА TELEGRAM -->
     <img src="https://web.telegram.org/a/img-apple-160/1f648.png" class="avatar-img" alt="Monkey Password">
     
     <h1>Введите пароль</h1>
@@ -357,7 +357,7 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js"></script>
 
 <script>
-    // СПИСОК ВСЕХ СТРАН (Сокращен для примера, добавь остальные из старого файла)
+    // СПИСОК ВСЕХ СТРАН (Вставь сюда полный список из своего старого файла)
     const countries = [
         { name: 'Австралия', code: '+61', flag: '1f1e6-1f1fa' },
         { name: 'Австрия', code: '+43', flag: '1f1e6-1f1f9' },
